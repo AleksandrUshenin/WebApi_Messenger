@@ -22,17 +22,6 @@ namespace Messenger.Controllers
             _userManeger = userManeger;
             _configuration = configuration;
         }
-
-        //[HttpGet]
-        //public IActionResult AdminEndPoint()
-        //{
-        //    return null;
-        //}
-        //[HttpGet]
-        //public IActionResult UserEndPoint()
-        //{
-        //    return null;
-        //}
         [AllowAnonymous]
         [HttpPost]
         [Route("Login")]
@@ -85,10 +74,6 @@ namespace Messenger.Controllers
             {
                 return StatusCode(500, e.Message);
             }
-            //var res = _userManeger.UserAdd(userDTO, Models.UserRole.Administrator);
-            //if (!res)
-            //    return StatusCode(500);
-            //return Ok();
         }
         [AllowAnonymous]
         [HttpPost]
@@ -104,10 +89,6 @@ namespace Messenger.Controllers
             {
                 return StatusCode(500, e.Message);
             }
-            //var res = _userManeger.UserAdd(userDTO, Models.UserRole.User);
-            //if (!res)
-            //    return StatusCode(500);
-            //return Ok();
         }
 
     }
