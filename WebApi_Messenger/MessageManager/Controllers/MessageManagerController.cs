@@ -26,15 +26,6 @@ namespace MessageManager.Controllers
         [Route("SendMessage")]
         public IActionResult SendMessage(MessageDTO message)
         {
-            //_userRepository = new UserContext();
-            //var sender = _userRepository
-            //    .Users
-            //    .FirstOrDefault(sender => sender.Name == message.SenderName);
-            //var recever = _userRepository
-            //    .Users
-            //    .FirstOrDefault(reciver => reciver.Name == message.ReceiverName);
-            //if (sender != null && recever != null)
-
             if (message.SenderMail != null && message.ReceiverMail != null && message.Text != null)
             {
                 var messageResult = _messageManager.SendMessage(
