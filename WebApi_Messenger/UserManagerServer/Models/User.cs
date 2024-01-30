@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Messenger.Models
+namespace UserManagerServer.Models
 {
     [Table("Users")]
     public class User

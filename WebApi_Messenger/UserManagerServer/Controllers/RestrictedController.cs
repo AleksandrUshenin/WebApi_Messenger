@@ -1,9 +1,11 @@
-﻿using Messenger.Models;
-using Messenger.Models.DTO;
-using Messenger.Repository.Interface;
+﻿//using Messenger.Models;
+//using Messenger.Models.DTO;
+//using Messenger.Repository.Interface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using UserManagerServer.Models.DTO;
+using UserManagerServer.Repository.Interface;
 
 namespace UserManagerServer.Controllers
 {

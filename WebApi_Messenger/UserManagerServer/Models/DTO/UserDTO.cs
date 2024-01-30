@@ -1,4 +1,4 @@
-﻿namespace Messenger.Models.DTO
+﻿namespace UserManagerServer.Models.DTO
 {
     public class UserDTO
     {

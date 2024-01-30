@@ -1,15 +1,18 @@
-﻿using Messenger.Models.DTO;
+﻿//using Messenger.Models.DTO;
 using Microsoft.AspNetCore.Mvc;
-using Messenger.Repository.Interface;
+//using Messenger.Repository.Interface;
 using Microsoft.AspNetCore.Authorization;
-using Messenger.Models;
+//using Messenger.Models;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using UserManagerServer.Controllers;
+using UserManagerServer.Repository.Interface;
+using UserManagerServer.Models.DTO;
+using UserManagerServer.Models;
 //using Microsoft.AspNetCore.Components;
 
-namespace Messenger.Controllers
+namespace UserManagerServer.Controllers
 {
     [ApiController]
     [Route("[controller]")]

@@ -1,4 +1,4 @@
-﻿namespace Messenger.Models
+﻿namespace UserManagerServer.Models
 {
     public enum UserRole
     {

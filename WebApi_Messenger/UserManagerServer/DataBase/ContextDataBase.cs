@@ -1,7 +1,8 @@
-﻿using Messenger.Models;
+﻿//using Messenger.Models;
 using Microsoft.EntityFrameworkCore;
+using UserManagerServer.Models;
 
-namespace Messenger.DataBase
+namespace UserManagerServer.DataBase
 {
     public class ContextDataBase : DbContext
     {

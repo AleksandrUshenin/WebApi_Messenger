@@ -2,7 +2,7 @@
 using Messenger.Models;
 using Messenger.Models.DTO;
 
-namespace Messenger
+namespace UserManagerServer
 {
     public class MapperProfiles : Profile
     {

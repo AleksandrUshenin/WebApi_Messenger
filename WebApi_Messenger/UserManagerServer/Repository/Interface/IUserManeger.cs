@@ -1,7 +1,10 @@
-﻿using Messenger.Models;
-using Messenger.Models.DTO;
+﻿//using Messenger.Models;
+//using Messenger.Models.DTO;
 
-namespace Messenger.Repository.Interface
+using UserManagerServer.Models;
+using UserManagerServer.Models.DTO;
+
+namespace UserManagerServer.Repository.Interface
 {
     public interface IUserManeger
     {

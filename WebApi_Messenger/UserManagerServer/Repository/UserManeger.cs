@@ -7,7 +7,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Xml.Linq;
 
-namespace Messenger.Repository
+namespace UserManagerServer.Repository
 {
     public class UserManeger : IUserManeger
     {
