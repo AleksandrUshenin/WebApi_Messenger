@@ -1,5 +1,6 @@
 ﻿using Messenger.Models;
 using Messenger.Models.DTO;
+using Messenger.Repository.Interface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -10,8 +11,11 @@ namespace UserManagerServer.Controllers
     [Route("[controller]")]
     public class RestrictedController : ControllerBase
     {
-        public RestrictedController()
-        { }
+        private readonly IUserManeger _userManeger;
+        public RestrictedController(IUserManeger userManeger)
+        {
+            _userManeger = userManeger;
+        }
 
 
         [HttpGet]
@@ -46,6 +50,28 @@ namespace UserManagerServer.Controllers
             }
 
             return null;
+        }
+        [HttpGet]
+        [Route("GetAllUsers")]
+        [Authorize(Roles = "Administrator")]
+        public IActionResult GetAllUsers()
+        {
+            return Ok(_userManeger.GetUsers());
+        }
+        [HttpDelete]
+        [Route("DeleteUser")]
+        [Authorize(Roles = "Administrator")]
+        public IActionResult DeleteUser(string name)
+        {
+            try
+            {
+                _userManeger.DeleteUser(name);
+                return Ok("Successfully!");
+            }
+            catch (Exception e) 
+            {
+                return BadRequest(e.Message);
+            }
         }
     }
 }

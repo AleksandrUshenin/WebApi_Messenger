@@ -1,4 +1,5 @@
-﻿using Messenger.DataBase;
+﻿using AutoMapper;
+using Messenger.DataBase;
 using Messenger.Models;
 using Messenger.Models.DTO;
 using Messenger.Repository.Interface;
@@ -11,9 +12,11 @@ namespace Messenger.Repository
     public class UserManeger : IUserManeger
     {
         private readonly IConfiguration _configuration;
-        public UserManeger(IConfiguration configuration) 
+        private readonly IMapper _mapper;
+        public UserManeger(IConfiguration configuration, IMapper mapper) 
         {
             _configuration = configuration;
+            _mapper = mapper;
         }
         public bool UserAdd(UserDTO userDTO, UserRole userRole)
         {
@@ -66,6 +69,38 @@ namespace Messenger.Repository
                 }
                 else
                     throw new Exception("Wrong password");
+            }
+        }
+        public List<UserDTO> GetUsers()
+        {
+            using (var db = new ContextDataBase(_configuration.GetValue<string>("PathDataBase")))
+            {
+                return db.Users.ToList().Select(x => _mapper.Map<UserDTO>(x)).ToList();
+            }
+        }
+        public void DeleteUser(string name)
+        {
+            using (var db = new ContextDataBase(_configuration.GetValue<string>("PathDataBase")))
+            {
+                var users = db.Users.ToList();
+                var user = users.FirstOrDefault(x => x.Name == name);
+
+                if (user is null)
+                    throw new Exception("User not found");
+                else
+                {
+                    if (user.Role == UserRole.Administrator)
+                        throw new Exception("Unable to remove administrator");
+                    try
+                    {
+                        db.Users.Remove(user);
+                        db.SaveChanges();
+                    }
+                    catch(Exception e)
+                    {
+                        throw new Exception(e.Message);
+                    }
+                }
             }
         }
     }

@@ -5,7 +5,9 @@ namespace Messenger.Repository.Interface
 {
     public interface IUserManeger
     {
-        public bool UserAdd(UserDTO userDTO, UserRole userRole);
-        public UserRole UserCheck(LoginUser loginUser);
+        bool UserAdd(UserDTO userDTO, UserRole userRole);
+        UserRole UserCheck(LoginUser loginUser);
+        List<UserDTO> GetUsers();
+        void DeleteUser(string name);
     }
 }

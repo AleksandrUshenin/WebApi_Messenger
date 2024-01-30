@@ -1,6 +1,5 @@
 ﻿using Messenger.Models.DTO;
 using Microsoft.AspNetCore.Mvc;
-
 using Messenger.Repository.Interface;
 using Microsoft.AspNetCore.Authorization;
 using Messenger.Models;
@@ -8,6 +7,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using UserManagerServer.Controllers;
+//using Microsoft.AspNetCore.Components;
 
 namespace Messenger.Controllers
 {
@@ -25,7 +25,7 @@ namespace Messenger.Controllers
         [AllowAnonymous]
         [HttpPost]
         [Route("Login")]
-        public ActionResult Login([FromBody] LoginUser loginUser)
+        public IActionResult Login([FromBody] LoginUser loginUser)
         {
             try
             {
@@ -63,14 +63,14 @@ namespace Messenger.Controllers
         [AllowAnonymous]
         [HttpPost]
         [Route("AddAdmin")]
-        public ActionResult AddAdmin([FromBody] UserDTO userDTO)
+        public IActionResult AddAdmin([FromBody] UserDTO userDTO)
         {
             try
             {
                 _userManeger.UserAdd(userDTO, Models.UserRole.Administrator);
                 return Ok();
             }
-            catch (Exception e) 
+            catch (Exception e)
             {
                 return StatusCode(500, e.Message);
             }
@@ -78,7 +78,7 @@ namespace Messenger.Controllers
         [AllowAnonymous]
         [HttpPost]
         [Route("AddUser")]
-        public ActionResult AddUser([FromBody] UserDTO userDTO)
+        public IActionResult AddUser([FromBody] UserDTO userDTO)
         {
             try
             {
@@ -89,6 +89,20 @@ namespace Messenger.Controllers
             {
                 return StatusCode(500, e.Message);
             }
+        }
+        [AllowAnonymous]
+        [HttpGet]
+        [Route("GetUserId")]
+        public IActionResult GetUserId()
+        {
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+            if (identity != null)
+            {
+                var userClaims = identity.Claims;
+                //var r = userClaims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
+                return Ok(userClaims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value);
+            }
+            return Unauthorized();
         }
 
     }
